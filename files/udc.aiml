@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    <category>
+        <pattern>*</pattern>
+        <template>
+            <random>
+                <li>Can you be a little more spesific?</li>
+                <li>Sorry I have no idea.</li>
+                <li>Can you use simpler words ? </li>
+            </random>
+            </template>
+    </category>
+    
+    <!-- USER INFO-->
+  <category>
+    <pattern>HELLO</pattern>
+    <template>
+        <random>
+            <li>Hi! What can I call you?</li>
+            <li>Hello ,What's your name?</li>
+        </random>
+    </template>
+  </category>
+  <category>
+      <pattern>CALL ME *</pattern>
+      <template>
+        <random>
+            <li>Hi <set name = "name"><star/> </set> How can I help you?</li>
+            <li>Hello <set name = "name"><star/> </set>, Good to see you! How can I help?</li>
+        </random>
+      </template>
+  </category>
+  <category>
+      <pattern>WHAT IS MY NAME</pattern>
+      <template>I assume that your name is <get name = "name"></get> If you are a different person, can you tell me your name?</template>
+  </category>
+  <category>
+      <pattern>HOW DO YOU KNOW MY NAME</pattern>
+      <template>You told it before</template>
+  </category>
+  
+      <!-- LISTING RESTAURANTS-->
+<category>
+    <pattern>SHOW ME RESTAURANTS </pattern>
+    <template>
+        <ul>
+            <li>Star Gorod</li>
+            <li>Mama Manana</li>
+            <li>Papa Roma</li>
+            <li>Mafia</li>
+            <li>Yaposhka</li>
+        </ul>
+    </template>
+</category>
+  
+  
+     <!-- MAKING RESERVATION-->
+    <category>
+      <pattern>_  MAKE A RESERVATION TO *</pattern>
+      <template>
+          Of course, what day will you be joining us on?
+      </template>
+  </category>
+  
+    <category>
+      <pattern>_  MAKE A RESERVATION TO *  FOR TODAY </pattern>
+      <template>
+          <random>
+                <li> Sorry! We <set name = "place"><star index="2"/></set> full today.Would you like to make a reservation for another day?</li>
+                <li>Okay <get name = "name"></get> How many people will you need the reservation for?</li>
+                <li>We have a limited number of tables left. How many people will you need the reservation for?</li>
+          </random>
+      </template>
+  </category>
+  <category>
+      <pattern>WE WILL BE COMING ON *</pattern>
+      <template>On <set name = "day"><star index="1"/></set> Okay. How many people will you need the reservation for? </template>
+  </category>
+  <category>
+      <pattern>WE WILL BE *</pattern>
+      <template>
+          <random>
+              <li>Unfortunately We don't have table for <set name = "people"><star/> </set> people.
+              <delay></delay>
+                Would you like to make a reservation for another day?</li>
+              <li>Okay What time is this reservation for?</li>
+          </random>
+      </template>
+  </category>
+    <category>
+      <pattern>MAKE IT  ON *</pattern>
+      <template>Okay on <set name="day" ><star/></set> Your reservation request can be fulfilled.
+      <delay></delay>What time is this reservation for?
+</template>
+  </category>
+  
+  <category>
+      <pattern>AT *</pattern>
+      <template>Fine, I can seat you at <set name = "time"><star index="1"/> </set>  on   <get name = "day"></get> </template>
+   </category>
+   
+   <category>
+       <pattern>NO _</pattern>
+       <template>Okay is there anything i can do for you?</template>
+   </category>
+   <category>
+       <pattern>NO</pattern>
+       <template>Okay See you later!</template>
+   </category>
+   <category>
+       <pattern>THANK YOU</pattern>
+       <template>See you at <get name = "time"></get> on <get name = "day"></get>, Mr/Mrs. <get name = "name"></get>.</template>
+   </category>
+   
+<!--INTERACTIVE SIDE-->
+    <category>
+        <pattern>WHAT DID I JUST SAY</pattern>
+        <template>
+            You said <input index="2"/> 
+            <learn>
+                <category>
+                    <pattern>WHAT DID YOU REPLY</pattern>
+                        <template>I replied <response index="2"/></template>
+                </category>
+            </learn>
+        </template>
+    </category>
+    <category>
+        <pattern>WHAT IS THE DATE TODAY</pattern>
+        <template>Today is <date/></template>
+    </category>
+    
+    <category>
+        <pattern>WHAT DAY IT IS</pattern>
+        <template>Today is <date format="%A"/></template>
+    </category>
+</aiml>
